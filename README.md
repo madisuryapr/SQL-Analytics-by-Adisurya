@@ -1,7 +1,7 @@
 # Data Analytics Repository
-In this repository, I will be preserving and conducting various projects related to Data Analytics and Business Intelligence
+In this repository, I will be performing and preserving various projects related to Data Analytics and Business Intelligence
 
-I will utilize both PostgreSQL and Microsoft SQL Server in conducting my future project. Currently, I am going to execute a project as following:
+I will utilize both PostgreSQL and Microsoft SQL Server in conducting my future project to answer various questions. Furthermore, there will be several projects which will be integrated to Tableau. Currently, I am going to execute recent project as following:
 
 ## Cashless Payments Around Indonesia
 In this project, I employ PostgreSQL to answer various questions regarding cashless payments in Indonesia based on montly dataset, spanning from January 20202 to December 2022 with database named as "noncash_paymentsys". The term noncash payment systems has the similiar meaning to cashless payments. This database include all cashless payments dataset for 34 provinces in Indonesia. There are 5 tables, to which be inserted in this project, namely:

@@ -1,5 +1,5 @@
-# Data-Analytics-by-Adisurya
-In this repository, I will be preserving various projects related to Data Analytics and Business Intelligence
+# Data Analytics Repository
+In this repository, I will be preserving and conducting various projects related to Data Analytics and Business Intelligence
 
 I will utilize both PostgreSQL and Microsoft SQL Server in conducting my future project. Currently, I am going to execute a project as following:
 

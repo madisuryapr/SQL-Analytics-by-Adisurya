@@ -10,4 +10,4 @@ This project will employ PostgreSQL to answer various questions regarding cashle
 + #### province_id          : 2-character VARCHAR ID for each provinces' name in Indonesia. This ID code is based on ISO 3166-2:ID
 + #### region_id            : 2-character VARCHAR ID of each region of provinces in Indonesia. The ID code is obtained from ISO 3166-2:ID
 + #### trasactions_value    : Total transactions value of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in Million IDR. I obtained the data from Bank Indonesia website
-5. #### transactions_volume  : Total transactions volume of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in 000 unit of transactions. The data are retrieved from Bank Indonesia website
++ #### transactions_volume  : Total transactions volume of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in 000 unit of transactions. The data are retrieved from Bank Indonesia website

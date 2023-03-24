@@ -7,6 +7,7 @@ Furthermore, this project also explores the utilization of Structured Query Lang
 This repository will present the fundamentals of PostgreSQL Queries and answer all relevant business-related questions, including:
 + SELECT Statements
 + JOINs and UNIONs
++ CASE Statement
 + Subqueries
 + Common Table Expressions (CTEs)
 + WINDOW Functions

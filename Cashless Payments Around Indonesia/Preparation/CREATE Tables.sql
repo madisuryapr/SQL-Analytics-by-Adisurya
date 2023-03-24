@@ -10,7 +10,7 @@ CREATE TABLE transactions_value (
     payment_system_name TEXT,
     category VARCHAR(150),
     unit TEXT,
-    value BIGINT
+    value NUMERIC(35, 3)
 );
 
 -- 2. Create Table for Transactions Volume of Non-cash Payment Systems
@@ -21,7 +21,7 @@ CREATE TABLE transactions_volume (
     payment_system_name TEXT,
     category VARCHAR(150),
     unit TEXT,
-    value BIGINT
+    value NUMERIC(35, 3)
 );
 
 -- 3. Create Table for Non-cash Payment Systems IDs

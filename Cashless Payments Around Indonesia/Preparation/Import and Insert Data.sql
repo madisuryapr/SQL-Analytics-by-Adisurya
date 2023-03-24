@@ -7,7 +7,7 @@ COPY
                        region_isocode, payment_system_name,
                        category, unit, value)
 FROM
-    'D:\Data Analytics\PostgreSQL\Noncash Payment Systems Around Indonesia\Dataset\transactions_value.csv'
+    'D:\Data Analytics\Project\Cashless Payments Around Indonesia\Dataset\transactions_value.csv'
 DELIMITER ';'
 CSV HEADER;
 
@@ -17,7 +17,7 @@ COPY
                        region_isocode, payment_system_name,
                        category, unit, value)
 FROM
-    'D:\Data Analytics\PostgreSQL\Noncash Payment Systems Around Indonesia\Dataset\transactions_volume.csv'
+    'D:\Data Analytics\Project\Cashless Payments Around Indonesia\Dataset\transactions_volume.csv'
 DELIMITER ';'
 CSV HEADER;
 -- Each Tables consist of 4896 rows of data

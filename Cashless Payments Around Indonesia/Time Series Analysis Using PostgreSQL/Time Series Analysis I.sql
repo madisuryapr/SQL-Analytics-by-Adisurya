@@ -1,5 +1,5 @@
--- TIME SERIES ANALYSIS I
--- This file examines and explores PostgreSQL utilization in analyzing time series data
+/* TIME SERIES ANALYSIS I
+This file examines and explores PostgreSQL utilization in analyzing time series data */
 
 -- 1. Calculate quarterly average of transactions value for Debit cards in all provinces of Jawa Region
 -- retrieve all data in Billions of Rupiah

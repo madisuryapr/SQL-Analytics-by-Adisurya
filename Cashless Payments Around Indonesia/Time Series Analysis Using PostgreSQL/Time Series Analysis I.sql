@@ -153,10 +153,10 @@ SELECT
     rcode, region_name, payments_id,
     system_name, category,
     value,
-    ROUND(AVG(value) OVER( PARTITION BY province_name
+    ROUND(AVG(value) OVER( PARTITION BY province_name, system_name
                     ORDER BY province_name, system_name ASC, category, date
         ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 3) AS ma_3month,
-    ROUND(AVG(value) OVER( PARTITION BY province_name
+    ROUND(AVG(value) OVER( PARTITION BY province_name, system_name
                     ORDER BY province_name, system_name ASC, category, date
         ROWS BETWEEN 5 PRECEDING AND CURRENT ROW), 3) AS ma_6month
 FROM

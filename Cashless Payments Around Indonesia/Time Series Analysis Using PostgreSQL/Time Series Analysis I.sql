@@ -122,44 +122,8 @@ GROUP BY province_name, region_name, pcode,
 ORDER BY province_name ASC, category ASC;
 -- This query will extract 272 rows of data which contains the standard deviation for both
 -- transactions value and volume of cashless payments system of each province
-SELECT
-        tval.time_date AS date,
-        tval.province_isocode AS pcode,
-        pid.province_name AS province_name,
-        tval.region_isocode AS rcode,
-        rid.region_name AS region_name,
-        ncid.payment_system_id AS payments_id,
-        tval.payment_system_name AS system_name,
-        tval.category AS category,
-        tval.value AS value
-    FROM transactions_value AS tval
-    INNER JOIN province_id AS pid
-        ON tval.province_isocode = pid.province_code
-    INNER JOIN region_id AS rid
-        ON tval.region_isocode = rid.region_isocode
-    INNER JOIN noncashps_id AS ncid
-        USING(payment_system_name)
-    UNION ALL
-    SELECT
-        tvol.time_date AS date,
-        tvol.province_isocode AS pcode,
-        pid.province_name AS province_name,
-        tvol.region_isocode AS rcode,
-        rid.region_name AS region_name,
-        ncid.payment_system_id AS payments_id,
-        tvol.payment_system_name AS system_name,
-        tvol.category AS category,
-        tvol.value AS value
-    FROM transactions_volume AS tvol
-    INNER JOIN province_id AS pid
-        ON tvol.province_isocode = pid.province_code
-    INNER JOIN region_id AS rid
-        ON tvol.region_isocode = rid.region_isocode
-    INNER JOIN noncashps_id AS ncid
-        USING(payment_system_name)
-ORDER BY province_name, system_name ASC, category, date;
 
-
+   
 -- 5. By applying CTE, calculate 3-month and 6-month moving average of debit and credit cards transactions
 -- value for each province in Sumatera and Jawa regions (round the results to 3 decimals)
 WITH smjw_debit_credit_tval AS (

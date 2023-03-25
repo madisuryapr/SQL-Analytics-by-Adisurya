@@ -1,4 +1,4 @@
-/* SELECT Statement Part III */
+/* SELECT Statement III */
 /* This file explores the usages of
    SELECT statement to answer the business questions
  */

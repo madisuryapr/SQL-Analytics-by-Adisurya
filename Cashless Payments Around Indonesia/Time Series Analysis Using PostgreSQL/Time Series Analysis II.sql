@@ -31,6 +31,7 @@ SELECT
        TO_CHAR(date, 'Month') AS monthly_time,
     system_name,
     category,
+    transactions_value_billion,
     AVG(transactions_value_billion) OVER (
         PARTITION BY region, system_name
         ORDER BY region, system_name ASC, category, date

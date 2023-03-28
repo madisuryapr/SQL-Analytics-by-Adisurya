@@ -99,12 +99,12 @@ SELECT
         ORDER BY name_of_province, system_name ASC,
             category, date))/(LAG(value, 1) OVER (PARTITION BY name_of_province, system_name, category
         ORDER BY name_of_province, system_name ASC,
-            category, date))) * 100, 3) || '%' AS mtm_growth,
+            category, date))) * 100, 3) AS mtm_growth,
     ROUND(((value - LAG(value, 12) OVER (PARTITION BY name_of_province, system_name, category
         ORDER BY name_of_province, system_name ASC,
             category, date))/LAG(value, 12) OVER (PARTITION BY name_of_province, system_name, category
         ORDER BY name_of_province, system_name ASC,
-            category, date)) * 100, 3) || '%' AS yoy_growth
+            category, date)) * 100, 3) AS yoy_growth
 FROM debit_credit_transactions;
 -- Therefore, we obtain all designated fields which includes both month-to-month and year-over-year growth
 -- of debit and credit cards transactions for each province in Indonesia

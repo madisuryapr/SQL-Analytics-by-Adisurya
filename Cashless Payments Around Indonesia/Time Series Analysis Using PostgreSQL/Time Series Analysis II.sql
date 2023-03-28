@@ -1,7 +1,7 @@
 /* TIME SERIES ANALYSIS II
     This file examines even further PostgreSQL application in answering time-series-related questions
     Furthermore, this file encompasses WINDOW functions and CTE utilization to obtain
-    the answer of time-series questions */
+    the answer */
 
 
 -- 1. Calculate 6-month and 12-month moving averages of transactions value of

@@ -10,5 +10,5 @@ This repository will present the fundamentals of PostgreSQL Queries and answer a
 + CASE Statement
 + Subqueries
 + Common Table Expressions (CTEs)
-+ WINDOW Functions
-+ Time Series Analysis
++ Window Function
++ Time Series Analysis Using PostgreSQL

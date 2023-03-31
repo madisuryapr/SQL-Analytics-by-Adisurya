@@ -4,7 +4,7 @@
     the answer */
 
 
--- 1. Calculate 6-month and 12-month moving averages of transactions value of
+-- Question No 1: Calculate 6-month and 12-month moving averages of transactions value of
 -- all cashless payments system for each region
 
 -- Step I: Create Common Table Expression named as region_transactions_value
@@ -47,7 +47,7 @@ FROM region_transactions_value;
 -- all cashless payments system for each region in Indonesia
 
 
--- 2. Calculate month-to-month (mtm) and year-over-year (yoy) growth of
+-- Question No.2: Calculate month-to-month (mtm) and year-over-year (yoy) growth of
 -- credit & debit cards transactions value and volume for each province
 -- (round the results into 3 decimals behind comma
 

@@ -3,12 +3,12 @@
    SELECT statement to answer the business questions
  */
 
--- 1A. What is the average of debit and credit cards transactions value
+-- Question No.1a: What is the average of debit and credit cards transactions value
 -- per year for each provinces?
 SELECT
-    province_isocode AS "province",
+    province_isocode AS prcode,
     EXTRACT(YEAR FROM time_date) AS year,
-    payment_system_name AS "Payment System Name",
+    payment_system_name AS system_name,
     AVG(value) AS average
 FROM
     transactions_value
@@ -20,11 +20,11 @@ GROUP BY
 ORDER BY province_isocode ASC, EXTRACT(YEAR FROM time_date) ASC;
 -- This query will generate 204 rows of data
 
--- 1B. Since we would like to focus in integer results, use CAST function
+-- Question No.1b: Since we would like to focus in integer results, use CAST function
 SELECT
-    province_isocode AS "province",
+    province_isocode AS prcode,
     EXTRACT(YEAR FROM time_date) AS year,
-    payment_system_name AS "Payment System Name",
+    payment_system_name AS system_name,
     CAST(AVG(value) AS INT) AS average
 FROM
     transactions_value
@@ -35,13 +35,13 @@ GROUP BY
     payment_system_name, EXTRACT(YEAR FROM time_date)
 ORDER BY province_isocode ASC, EXTRACT(YEAR FROM time_date) ASC;
 
--- 1C. It seems the province_isocode is not sufficient to represent the provinces in Indonesia.
+-- Question No.1c:  It seems the province_isocode is not sufficient to represent the provinces in Indonesia.
 -- Hence, to extract the province's name, Join transactions_value and province_id tables
 SELECT
-    tval.province_isocode AS "Province_code",
-    pid.province_name AS "Province Name",
+    tval.province_isocode AS prcode,
+    pid.province_name AS name_of_province,
     EXTRACT(YEAR FROM tval.time_date) AS year,
-    tval.payment_system_name AS "Payment System Name",
+    tval.payment_system_name AS system_name,
     CAST(AVG(value) AS INT) AS average
 FROM
     transactions_value AS tval
@@ -55,7 +55,7 @@ GROUP BY
 ORDER BY province_isocode ASC,
          tval.payment_system_name ASC;
 
--- 2A. Now Let us retrieve the total of all payment systems transactions volume
+-- Question No.2a: Now Let us retrieve the total of all payment systems transactions volume
 -- based on region each year
 SELECT
     tvol.region_isocode AS region_code,
@@ -75,7 +75,7 @@ ORDER BY rid.region_name ASC,
 -- Based on this query, we obtain 84 rows of data in which represents total transactions volume
 -- for all regions each year.
 
--- 2B. We are also capable to obtain the detailed number of results from prior query
+-- Question No.2b: We are also capable to obtain the detailed number of results from prior query
 -- by applying CAST clause to total_transactions_volume
 SELECT
     tvol.region_isocode AS region_code,

@@ -1,7 +1,7 @@
 /* TIME SERIES ANALYSIS I
 This file examines and explores PostgreSQL utilization in analyzing time series data */
 
--- 1. Calculate quarterly average of transactions value for Debit cards in all provinces of Jawa Region
+-- Question No.1: Calculate quarterly average of transactions value for Debit cards in all provinces of Jawa Region
 -- retrieve all data in Billions of Rupiah
 SELECT
     rid.region_name,
@@ -26,7 +26,7 @@ ORDER BY
 -- Based on the query, we obtain 72 rows of data containing quarterly average of Debit Cards
 -- transactions value around Jawa region in Billions of Rupiah
 
--- 2. Calculate the spread between provinces' maximum volume and monthly transactions volume of credit cards
+-- Question No.2: Calculate the spread between provinces' maximum volume and monthly transactions volume of credit cards
 -- for each province
 SELECT
     tvol.province_isocode AS province_code,
@@ -50,7 +50,7 @@ ORDER BY pid.province_name ASC, date ASC;
 -- of credit cards for each province
 
 
--- 3. Retrieve the 95th and 75th percentiles, as well as median (also knows as 50th percentile)
+-- Question No.3: Retrieve the 95th and 75th percentiles, as well as median (also knows as 50th percentile)
 -- of transactions value for all payment systems of each province
 SELECT
     ROW_NUMBER() OVER() AS row_number,
@@ -67,7 +67,7 @@ ORDER BY province ASC;
 -- Thus, we obtain 136 rows of data of 95th and 75th percentiles, as well as the median
 -- of each province
 
--- 4. Calculate both transactions value and volume standard deviation for all cashless payments system
+-- Question No.4: Calculate both transactions value and volume standard deviation for all cashless payments system
 -- for each provinces
 -- Step I: Construct Common Table Expression (CTE) for all data that combines
 -- both transactions value and volume data
@@ -124,7 +124,7 @@ ORDER BY province_name ASC, category ASC;
 -- transactions value and volume of cashless payments system of each province
 
    
--- 5. By applying CTE, calculate 3-month and 6-month moving average of debit and credit cards transactions
+-- Question No.5: By applying CTE, calculate 3-month and 6-month moving average of debit and credit cards transactions
 -- value for each province in Sumatera and Jawa regions (round the results to 3 decimals)
 WITH smjw_debit_credit_tval AS (
     SELECT

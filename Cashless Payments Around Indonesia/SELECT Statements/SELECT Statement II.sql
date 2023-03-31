@@ -4,7 +4,7 @@
    Specific questions
  */
 
--- 1. Retrieve the average of transactions value for each payment systems
+-- Question No.1: Retrieve the average of transactions value for each payment systems
 SELECT
     payment_system_name AS "Payment System Name",
     AVG(value) AS "Average of Transactions Value"
@@ -13,7 +13,7 @@ FROM
 GROUP BY payment_system_name
 ORDER BY payment_system_name ASC;
 
--- 2. The number of decimal seems cluttered, employ ROUND clause to obtain
+-- Question No.2: The number of decimal seems cluttered, employ ROUND clause to obtain
 -- the specific number of values
 SELECT
     payment_system_name AS "Payment System Name",
@@ -23,7 +23,7 @@ FROM
 GROUP BY payment_system_name
 ORDER BY payment_system_name ASC;
 
--- 3. Retrieve the total of transactions value, grouped by region_id and
+-- Question No.3: Retrieve the total of transactions value, grouped by region_id and
 -- and payment_system_name
 SELECT
     region_isocode AS "Region",
@@ -37,7 +37,7 @@ GROUP BY
 ORDER BY region_isocode ASC,
          payment_system_name;
 
--- 4. Retrieve the Standard Deviation of transactions value for all payment systems, grouped by provinces
+-- Question No.4: Retrieve the Standard Deviation of transactions value for all payment systems, grouped by provinces
 SELECT
     province_isocode AS "Province",
     STDDEV(value) AS "Standard Deviation"
@@ -47,7 +47,7 @@ GROUP BY
     province_isocode
 ORDER BY province_isocode;
 
--- 5. Previous results quite confusing, since we do not know the name of provinces.
+-- Question No.5: Previous results quite confusing, since we do not know the name of provinces.
 -- Therefore, employ JOIN Clause to obtain province's name from other table
 SELECT
     tval.province_isocode AS "Province Code",
@@ -61,7 +61,7 @@ GROUP BY
     tval.province_isocode, pid.province_name
 ORDER BY tval.province_isocode ASC;
 
--- 6. Retrieve Provinces Name, Province ISO Code, and the total transactions volume
+-- Question No.6: Retrieve Provinces Name, Province ISO Code, and the total transactions volume
 -- Of each payment systems
 SELECT
     tvol.province_isocode AS "Province Code",
@@ -79,7 +79,7 @@ GROUP BY
 ORDER BY
     pid.province_name ASC;
 
--- 7. Retrieve Debit Cards transactions volume more than 10000 for each provinces
+-- Question No.7: Retrieve Debit Cards transactions volume more than 10000 for each provinces
 SELECT
     tvol.time_date AS date,
     tvol.province_isocode AS "Province Code",
@@ -99,7 +99,7 @@ HAVING tvol.value > 10000
 ORDER BY pid.province_name ASC;
 -- This query generated 400 rows of data for each provinces where transactions volume is more than 10000
 
--- 8. Select Debit Cards Transactions Volume for Jawa Region Only
+-- Question No.8: Select Debit Cards Transactions Volume for Jawa Region Only
 SELECT
     tval.time_date AS date,
     tval.province_isocode AS "Province Code",

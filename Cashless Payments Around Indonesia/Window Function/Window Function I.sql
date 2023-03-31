@@ -3,7 +3,7 @@
    to answer any business-related questions based on regional cashless payments
    system around Indonesia database */
 
--- 1. Obtain the row number of transactions_volume table, join with province_id table
+-- Question No.1: Obtain the row number of transactions_volume table, join with province_id table
 -- to include province name
 SELECT
     ROW_NUMBER() OVER(ORDER BY pid.province_name,
@@ -18,7 +18,7 @@ INNER JOIN province_id AS pid
     ON tvol.province_isocode = pid.province_code
 ORDER BY name_of_province, system_name ASC, date;
 
--- 2. Retrieve the rank of debit cards transactions value for all provinces
+-- Question No.2: Retrieve the rank of debit cards transactions value for all provinces
 SELECT
     tval.province_isocode AS pcode,
     pid.province_name name_of_province,
@@ -32,7 +32,8 @@ WHERE tval.payment_system_name = 'Debit Cards';
 -- The result of this query suggests that DKI Jakarta has the highest debit cards transactions value
 -- among all provinces, around IDR 200-300 Billion in monthly terms
 
--- 3. To Avert any skipped rank, we are able to utilize DENSE_RANK() in prior query
+-- Question No.3; To Avert any skipped rank, Retrieve the rank of debit cards transactions value 
+-- for all provinces by employing DENSE_RANK()
 SELECT
     tval.province_isocode AS pcode,
     pid.province_name name_of_province,
@@ -45,7 +46,7 @@ INNER JOIN province_id AS pid
 WHERE tval.payment_system_name = 'Debit Cards';
 -- This query maintains the results of prior query
 
--- 4. Retrieve row number of provinces in transactions value table, where row numbering
+-- Question No.4 Retrieve row number of provinces in transactions value table, where row numbering
 -- is based on provinces' region, extract Jawa Region only
 SELECT
     ROW_NUMBER() OVER(PARTITION BY rid.region_name
@@ -67,7 +68,7 @@ WHERE region_name = 'Jawa'
 ORDER BY name_of_province, system_name ASC, date;
 -- We obtain 864 rows of transactions value for Jawa region only
 
--- 5. Provide equal page distribution for transactions value table based on province
+-- Question No.5: Provide equal page distribution for transactions value table based on province
 SELECT
     tval.province_isocode AS pcode,
     pid.province_name AS name_of_province,

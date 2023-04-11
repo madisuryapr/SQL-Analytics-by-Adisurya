@@ -11,5 +11,6 @@ This repository will present the fundamentals of PostgreSQL Queries and answer a
 + Subqueries
 + Common Table Expressions (CTEs)
 + Window Function
++ Functions for Manipulating Data and Table in PostgreSQL
 + Statistical Functions in PostgreSQL
 + Time Series Analysis Using PostgreSQL

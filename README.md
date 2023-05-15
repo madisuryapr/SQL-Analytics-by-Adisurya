@@ -13,6 +13,7 @@ This project will employ PostgreSQL to answer various questions regarding cashle
 + transactions_volume  : Total transactions volume of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in unit of transactions. The data are retrieved from Bank Indonesia website
 
 ### Live Dashboard
+This dashboard is available on both Desktop and mobile versions. Click link below to observe the dashboard
 + [View Live Dashboard for Cashless Payments Around Indonesia on Tableau Public](https://public.tableau.com/app/profile/madisuryapr/viz/CashlessPaymentsSystemAroundIndonesia/CashlessPayments)
 
 ![Tableau Dashboard](https://github.com/madisuryapr/Data-Analytics-by-Adisurya/assets/91768688/f33806a9-232a-472e-803e-fab393e8aa13)

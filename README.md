@@ -11,3 +11,6 @@ This project will employ PostgreSQL to answer various questions regarding cashle
 + region_id            : 2-character VARCHAR ID of each region of provinces in Indonesia. The ID code is obtained from ISO 3166-2:ID
 + trasactions_value    : Total transactions value of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in Billion IDR. The data were from Bank Indonesia website
 + transactions_volume  : Total transactions volume of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in unit of transactions. The data are retrieved from Bank Indonesia website
+
+## Stocks' Price and Transactions Volume of Indonesia Firms During COVID-19 Pandemic
+This project presents another SQL project regarding stocks' price and transactions volume for Indonesia firms during COVID-19 pandemic, in which encompasses daily dataset over the period January 2020 to April 2023. Microsoft SQL Server Express will be utilized as primary database engine and query language. The project database is expected to contain 3 tables, 

@@ -18,5 +18,5 @@ This project will employ PostgreSQL to answer various questions regarding cashle
 ![Tableau Dashboard](https://github.com/madisuryapr/Data-Analytics-by-Adisurya/assets/91768688/f33806a9-232a-472e-803e-fab393e8aa13)
 
 ## Stocks' Price and Transactions Volume of Indonesia Firms During COVID-19 Pandemic
-This project presents another SQL project regarding stocks' price and transactions volume for Indonesia firms during COVID-19 pandemic, in which encompasses daily dataset over the period January 2020 to April 2023. Microsoft SQL Server Express will be utilized as primary database engine and query language. The project database is expected to contain 3 tables, 
+This project presents another SQL project regarding stocks' price and transactions volume for 30+ Indonesian firms during COVID-19 pandemic, in which encompasses daily dataset over the period January 2020 to April 2023. Microsoft SQL Server Express will be utilized as primary database engine and query language. The project database is expected to contain 3 tabless as follows.
 

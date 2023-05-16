@@ -20,4 +20,6 @@ This dashboard is available on both Desktop and mobile versions. Click link belo
 
 ## Stocks' Performance of Indonesian Firms During COVID-19 Pandemic
 This project presents another SQL project regarding stocks' performance for 30+ Indonesian firms during COVID-19 pandemic, in which encompasses daily dataset over the period January 2020 to April 2023. Microsoft SQL Server Express will be utilized as primary database engine and query language. The project database is expected to contain 3 tabless as follows.
-
++ stocks_performance    : This table contains 6 columns of firm's stock performance, i.e. Open, High, Low, Close, Adj Close, and Volume
++ stock_listing         : Table in which contains list of stock firms and their first listing in Indonesia Stock Exchange (IDX)
++ stock_firm_sector     : The table provides the list of firm's sector for all registered firms in IDX

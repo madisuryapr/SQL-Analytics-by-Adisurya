@@ -5,9 +5,8 @@ This project utilizes Microsoft SQL Server to devise and create various queries 
 
 This repository will present the fundamentals of SQL Server queries which covers following topic:
 + SELECT Statements
-+ JOINs and UNIONs
++ JOINs and Subqueries
 + CASE Statement
-+ Subqueries
 + Common Table Expressions (CTEs)
 + Window Functions
 + Functions for Manipulating Data and Tables in MS SQL Server

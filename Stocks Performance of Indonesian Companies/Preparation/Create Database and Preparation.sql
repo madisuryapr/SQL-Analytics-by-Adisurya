@@ -23,11 +23,11 @@ CREATE TABLE stock_listing (
 CREATE TABLE stock_performance (
     stock_ticker VARCHAR(100) FOREIGN KEY REFERENCES stock_listing(stock_code),
     date DATE,
-    open_price BIGINT,
-    high_price BIGINT,
-    low_price BIGINT,
-    close_price BIGINT,
-    adj_close_price BIGINT,
+    price_open BIGINT,
+    price_high BIGINT,
+    price_low BIGINT,
+    price_close BIGINT,
+    price_adjclose BIGINT,
     stocks_transactions_volume BIGINT
 );
 

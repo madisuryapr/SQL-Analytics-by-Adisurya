@@ -45,8 +45,8 @@ FROM bbca_stock;
 
 
 -- Question No.2: Using Bollinger Bands, Determine whether upward or downward trend
--- occurs on Bank Negara Indonesia's stock typical price
-WITH bbni_stock AS(
+-- occurs on Unilever Indonesia's stocks typical price
+WITH unvr_stock AS(
     SELECT
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
@@ -58,8 +58,8 @@ WITH bbni_stock AS(
     INNER JOIN stock_listing AS sl
         ON sp.stock_ticker = sl.stock_code
     WHERE
-        sl.company_name = 'Bank Negara Indonesia'
-) -- Step I: Create CTE for Bank Negara Indonesia's stocks performance
+        sl.company_name = 'Unilever Indonesia'
+) -- Step I: Create CTE for Unilever Indonesia's stocks performance
 SELECT
     ticker,
     company,
@@ -153,73 +153,76 @@ SELECT
                 ORDER BY company
                 ROWS BETWEEN 19 PRECEDING AND CURRENT ROW
         ) * 2))) THEN 'Oversold'
+        ELSE 'Equal to Certain Point'
     END AS price_trend
 FROM
-    bbni_stock;
+    unvr_stock;
 
 -- Question No.3: Calculate Awesome Oscillator (AO) for Bank Jago stocks median price and
 -- determine the median stocks price momentum (whether bullish, bearish, or no momentum)
-WITH bank_jago_median AS (
+WITH stocks_median_performance AS (
     SELECT
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS date_time,
         sp.price_high AS high_price,
-        sp.price_low AS low_price
+        sp.price_low AS low_price,
+        ((sp.price_high + sp.price_low)/2) AS median_price
     FROM stock_performance AS sp
     INNER JOIN stock_listing AS sl
         ON sp.stock_ticker = sl.stock_code
-    WHERE
-    sl.company_name = 'Bank Jago'
-) -- Step I: Create CTE for calculating Median Price
+) -- Step I: Create CTE for median stocks price
 SELECT
     ticker,
     company,
     date_time,
-    (high_price + low_price) / 2 AS median_price, -- Step II: Calculate stocks median price
-     AVG((high_price + low_price) / 2) OVER(
-            PARTITION BY company
-            ORDER BY company
+    high_price,
+    low_price,
+    median_price,
+     AVG(median_price) OVER(
+            PARTITION BY company, ticker
+            ORDER BY company ASC
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
-     ) AS ma5_median_price, -- Step IIIa: Calculate 5-day moving average of median price
-    AVG((high_price + low_price) / 2) OVER(
-            PARTITION BY company
-            ORDER BY company
+     ) AS ma5_median_price, -- Step IIa: Calculate 5-day moving average of median price
+    AVG(median_price) OVER(
+            PARTITION BY company, ticker
+            ORDER BY company ASC
             ROWS BETWEEN 33 PRECEDING AND CURRENT ROW
-     ) AS ma34_median_price, -- Step IIIb: Calculate 34-day moving average of median price
-     AVG((high_price + low_price) / 2) OVER(
-            PARTITION BY company
-            ORDER BY company
+     ) AS ma34_median_price, -- Step IIb: Calculate 34-day moving average of median price
+     AVG(median_price) OVER(
+            PARTITION BY company, ticker
+            ORDER BY company ASC
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
-     ) - AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+     ) - AVG(median_price) OVER(
+                PARTITION BY company, ticker
+                ORDER BY company ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW
-     ) AS awesome_oscillator_score, -- Step IIIc: Calculate Awesome Oscillator (AO) Score
+     ) AS awesome_oscillator_score, -- Step IIc: Calculate Awesome Oscillator (AO) Score
      CASE
         WHEN
-            (AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+            (AVG(median_price) OVER(
+                PARTITION BY company, ticker
+                ORDER BY company ASC
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) -
-             AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+             AVG(median_price) OVER(
+                PARTITION BY company, ticker
+                ORDER BY company ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) > 0 THEN 'Bullish Momentum'
         WHEN
-             (AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+             (AVG(median_price) OVER(
+                PARTITION BY company, ticker
+                ORDER BY company ASC
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) -
-              AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+              AVG(median_price) OVER(
+                PARTITION BY company, ticker
+                ORDER BY company ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) < 0 THEN 'Bearish Momentum'
         ELSE 'No Momentum'
-        END AS momentum -- Step IV: Use CASE Statements to determine the AO momentum
+        END AS momentum -- Step III: Use CASE Statements to determine the AO momentum
 FROM
-    bank_jago_median
+    stocks_median_performance
+WHERE
+    company = 'Bank Jago'
 ORDER BY
-    company,
-    date_time,
-    ticker;
+    company ASC,
+    date_time;

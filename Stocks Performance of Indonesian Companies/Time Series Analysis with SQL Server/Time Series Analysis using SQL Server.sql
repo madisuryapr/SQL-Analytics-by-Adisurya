@@ -11,7 +11,7 @@ WITH company_typical_price AS (
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS period,
-        (sp.high_price + sp.low_price + sp.close_price)/3 AS typical_price
+        (sp.price_high + sp.price_low + sp.price_close)/3 AS typical_price
     FROM stock_performance AS sp 
     INNER JOIN stock_listing AS sl 
         ON sp.stock_ticker = sl.stock_code
@@ -42,7 +42,7 @@ WITH company_typical_price AS (
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS period,
-        (sp.high_price + sp.low_price + sp.close_price)/3 AS typical_price
+        (sp.price_high + sp.price_low + sp.price_close)/3 AS typical_price
     FROM stock_performance AS sp 
     INNER JOIN stock_listing AS sl 
         ON sp.stock_ticker = sl.stock_code
@@ -74,9 +74,9 @@ WITH stocks_intraday_return AS (
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS period,
-        sp.open_price AS open_price,
-        sp.close_price AS close_price,
-        (sp.open_price - sp.close_price) AS intraday_return
+        sp.price_open AS open_price,
+        sp.price_close AS close_price,
+        (sp.price_open - sp.price_close) AS intraday_return
     FROM stock_performance AS sp 
     INNER JOIN stock_listing AS sl 
         ON sp.stock_ticker = sl.stock_code
@@ -108,7 +108,7 @@ WITH stock_close_price AS (
         sl.company_name AS company,
         DATEPART(YEAR, sp.date) AS year,
         sp.date AS period,
-        sp.close_price AS close_price
+        sp.price_close AS close_price
     FROM stock_performance AS sp 
     INNER JOIN stock_listing AS sl 
         ON sp.stock_ticker = sl.stock_code
@@ -138,71 +138,68 @@ ORDER BY
 -- No.5: Calculate Awesome Oscillator (AO) for Allo Bank Indonesia stock Price
 -- where trading period between January 2022 and May 2023
 -- and determine whether the momentum is bearish or bullish
-WITH stocks_median_performance AS (
+WITH stock_median_performance AS (
     SELECT 
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS date_time,
-        sp.high_price AS high_price, 
-        sp.low_price AS low_price
+        sp.price_high AS high_price,
+        sp.price_low AS low_price
     FROM stock_performance AS sp 
     INNER JOIN stock_listing AS sl 
         ON sp.stock_ticker = sl.stock_code
-    WHERE 
+    WHERE
         sp.date BETWEEN '2022-01-01' AND '2023-05-31'
 ) -- Step I: Create CTE for calculating Median Price
 SELECT
     ticker,
     company,
     date_time,
-    high_price,
-    low_price,
     (high_price + low_price) / 2 AS median_price, -- Step II: Calculate stocks median price
      AVG((high_price + low_price) / 2) OVER(
-            PARTITION BY company
-            ORDER BY company
+            PARTITION BY company, ticker
+            ORDER BY company, ticker
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
      ) AS ma5_median_price, -- Step IIIa: Calculate 5-day moving average of median price
     AVG((high_price + low_price) / 2) OVER(
-            PARTITION BY company
-            ORDER BY company
+            PARTITION BY company, ticker
+            ORDER BY company, ticker
             ROWS BETWEEN 33 PRECEDING AND CURRENT ROW
      ) AS ma34_median_price, -- Step IIIb: Calculate 34-day moving average of median price
      AVG((high_price + low_price) / 2) OVER(
-            PARTITION BY company
-            ORDER BY company
+            PARTITION BY company, ticker
+            ORDER BY company, ticker
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
      ) - AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+                PARTITION BY company, ticker
+                ORDER BY company, ticker
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW
      ) AS awesome_oscillator_score, -- Step IIIc: Calculate Awesome Oscillator (AO) Score
      CASE
         WHEN 
             (AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+                PARTITION BY company, ticker
+                ORDER BY company, ticker
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) - 
             AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+                PARTITION BY company, ticker
+                ORDER BY company, ticker
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) > 0 THEN 'Bullish Momentum'
         WHEN
              (AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+                PARTITION BY company, ticker
+                ORDER BY company, ticker
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) - 
             AVG((high_price + low_price) / 2) OVER(
-                PARTITION BY company
-                ORDER BY company
+                PARTITION BY company, ticker
+                ORDER BY company, ticker
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) < 0 THEN 'Bearish Momentum'
         ELSE 'No Momentum'
         END AS ao_momentum -- Step IV: Use CASE Statements to determine the AO momentum
 FROM 
-    stocks_median_performance
+    stock_median_performance
 WHERE
     company = 'Allo Bank Indonesia'
-ORDER BY 
-    company,
-    date_time,
-    ticker;
+ORDER BY
+    company ASC,
+    date_time;

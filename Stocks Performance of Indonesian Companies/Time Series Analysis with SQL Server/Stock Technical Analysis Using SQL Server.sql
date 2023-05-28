@@ -17,7 +17,7 @@ WITH bbca_stock AS (
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS date_time,
-        (sp.high_price + sp.low_price + sp.close_price) / 3
+        (sp.price_high + sp.price_low + sp.price_close) / 3
             AS typical_price
     FROM stock_performance AS sp
     INNER JOIN stock_listing AS sl
@@ -51,8 +51,8 @@ WITH bbni_stock AS(
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS date_time,
-        sp.close_price AS close_price,
-        (sp.high_price + sp.low_price + sp.close_price) / 3
+        sp.price_close AS close_price,
+        (sp.price_high + sp.price_low + sp.price_close) / 3
                 AS typical_price
     FROM stock_performance AS sp
     INNER JOIN stock_listing AS sl
@@ -164,8 +164,8 @@ WITH bank_jago_median AS (
         sp.stock_ticker AS ticker,
         sl.company_name AS company,
         sp.date AS date_time,
-        sp.high_price AS high_price,
-        sp.low_price AS low_price
+        sp.price_high AS high_price,
+        sp.price_low AS low_price
     FROM stock_performance AS sp
     INNER JOIN stock_listing AS sl
         ON sp.stock_ticker = sl.stock_code

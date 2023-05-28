@@ -40,7 +40,7 @@ ORDER BY number_of_companies DESC;
 -- 9. What's the highest stock open price for each stock ticker?
 SELECT
     stock_ticker AS ticker,
-    MAX(open_price) AS max_open_price
+    MAX(price_open) AS max_open_price
 FROM stock_performance
 GROUP BY stock_ticker;
 
@@ -48,6 +48,6 @@ GROUP BY stock_ticker;
 -- typical stock's price is obtained by dividing the total of low, high, and close prices by 3
 SELECT
     stock_ticker AS ticker,
-    AVG((open_price + low_price + high_price)/3) AS average_typical_price
+    AVG((price_open + price_low + price_high)/3) AS average_typical_price
 FROM stock_performance
 GROUP BY stock_ticker;

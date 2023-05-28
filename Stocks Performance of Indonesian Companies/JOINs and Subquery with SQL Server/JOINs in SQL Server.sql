@@ -11,7 +11,7 @@ SELECT
     sp.stock_ticker AS ticker,
     sl.company_name AS company,
     AVG(
-        (sp.high_price + sp.low_price + sp.close_price)/3
+        (sp.price_high + sp.price_low + sp.price_close)/3
         ) AS average_typical_price
 FROM stock_performance AS sp
 INNER JOIN stock_listing AS sl

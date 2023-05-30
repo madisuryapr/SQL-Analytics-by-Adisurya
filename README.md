@@ -10,7 +10,8 @@ This project will employ PostgreSQL to answer various questions regarding cashle
 This dashboard is available on both Desktop and mobile versions. Click link below to observe the dashboard
 + [View Live Dashboard for Cashless Payments Around Indonesia on Tableau Public](https://public.tableau.com/app/profile/madisuryapr/viz/CashlessPaymentsSystemAroundIndonesia/CashlessPayments)
 
-![Tableau Dashboard](https://github.com/madisuryapr/Data-Analytics-by-Adisurya/assets/91768688/f33806a9-232a-472e-803e-fab393e8aa13)
+![Dashboard_Cashless Payments System Around Indonesia](https://github.com/madisuryapr/Data-Analytics-by-Adisurya/assets/91768688/4229d25d-0407-4c8e-9a46-44f546cfb9e6)
 
 ## Stocks' Performance of Indonesian Firms During COVID-19 Pandemic
 This project presents another SQL project regarding stocks' performance for 30+ Indonesian firms during COVID-19 pandemic, in which encompasses daily dataset over the period January 2020 to May 2023. Microsoft SQL Server will be utilized as primary database engine and query language. 
+

@@ -181,17 +181,17 @@ SELECT
     median_price,
      AVG(median_price) OVER(
             PARTITION BY company, ticker
-            ORDER BY company ASC
+            ORDER BY date_time ASC
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
      ) AS ma5_median_price, -- Step IIa: Calculate 5-day moving average of median price
     AVG(median_price) OVER(
             PARTITION BY company, ticker
-            ORDER BY company ASC
+            ORDER BY date_time ASC
             ROWS BETWEEN 33 PRECEDING AND CURRENT ROW
      ) AS ma34_median_price, -- Step IIb: Calculate 34-day moving average of median price
      AVG(median_price) OVER(
             PARTITION BY company, ticker
-            ORDER BY company ASC
+            ORDER BY date_time ASC
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
      ) - AVG(median_price) OVER(
                 PARTITION BY company, ticker
@@ -202,20 +202,20 @@ SELECT
         WHEN
             (AVG(median_price) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company ASC
+                ORDER BY date_time ASC
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) -
              AVG(median_price) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company ASC
+                ORDER BY date_time ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) > 0 THEN 'Bullish Momentum'
         WHEN
              (AVG(median_price) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company ASC
+                ORDER BY date_time ASC
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) -
               AVG(median_price) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company ASC
+                ORDER BY date_time ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) < 0 THEN 'Bearish Momentum'
         ELSE 'No Momentum'
         END AS momentum -- Step III: Use CASE Statements to determine the AO momentum

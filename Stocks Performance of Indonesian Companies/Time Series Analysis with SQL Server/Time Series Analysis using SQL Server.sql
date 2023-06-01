@@ -23,12 +23,12 @@ SELECT
     typical_price,
     AVG(typical_price) OVER( 
         PARTITION BY company
-        ORDER BY company, period
+        ORDER BY period ASC
         ROWS BETWEEN 49 PRECEDING AND CURRENT ROW
     ) AS short_term_moving_average,
     AVG(typical_price) OVER(
         PARTITION BY company
-        ORDER BY company, period 
+        ORDER BY period ASC
         ROWS BETWEEN 199 PRECEDING AND CURRENT ROW
     ) AS long_term_moving_average
 FROM
@@ -54,12 +54,12 @@ SELECT
     typical_price,
     CAST(STDEVP(typical_price) OVER( 
         PARTITION BY company
-        ORDER BY company, period
+        ORDER BY period ASC
         ROWS BETWEEN 29 PRECEDING AND CURRENT ROW
     ) AS NUMERIC(20, 4)) AS moving_sd_30day,
     CAST(STDEVP(typical_price) OVER(
         PARTITION BY company
-        ORDER BY company, period 
+        ORDER BY period ASC
         ROWS BETWEEN 59 PRECEDING AND CURRENT ROW
     ) AS NUMERIC(20,4)) AS moving_sd_60day
 FROM
@@ -158,41 +158,41 @@ SELECT
     (high_price + low_price) / 2 AS median_price, -- Step II: Calculate stocks median price
      AVG((high_price + low_price) / 2) OVER(
             PARTITION BY company, ticker
-            ORDER BY company, ticker
+            ORDER BY date_time ASC
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
      ) AS ma5_median_price, -- Step IIIa: Calculate 5-day moving average of median price
     AVG((high_price + low_price) / 2) OVER(
             PARTITION BY company, ticker
-            ORDER BY company, ticker
+            ORDER BY date_time ASC
             ROWS BETWEEN 33 PRECEDING AND CURRENT ROW
      ) AS ma34_median_price, -- Step IIIb: Calculate 34-day moving average of median price
      AVG((high_price + low_price) / 2) OVER(
             PARTITION BY company, ticker
-            ORDER BY company, ticker
+            ORDER BY date_time ASC
             ROWS BETWEEN 4 PRECEDING AND CURRENT ROW
      ) - AVG((high_price + low_price) / 2) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company, ticker
+                ORDER BY date_time ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW
      ) AS awesome_oscillator_score, -- Step IIIc: Calculate Awesome Oscillator (AO) Score
      CASE
         WHEN 
             (AVG((high_price + low_price) / 2) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company, ticker
+                ORDER BY date_time ASC
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) - 
             AVG((high_price + low_price) / 2) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company, ticker
+                ORDER BY date_time ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) > 0 THEN 'Bullish Momentum'
         WHEN
              (AVG((high_price + low_price) / 2) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company, ticker
+                ORDER BY date_time ASC
                 ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) - 
             AVG((high_price + low_price) / 2) OVER(
                 PARTITION BY company, ticker
-                ORDER BY company, ticker
+                ORDER BY date_time ASC
                 ROWS BETWEEN 33 PRECEDING AND CURRENT ROW)) < 0 THEN 'Bearish Momentum'
         ELSE 'No Momentum'
         END AS ao_momentum -- Step IV: Use CASE Statements to determine the AO momentum

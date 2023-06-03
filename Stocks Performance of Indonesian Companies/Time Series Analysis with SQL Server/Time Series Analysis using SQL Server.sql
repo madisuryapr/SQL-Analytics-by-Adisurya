@@ -90,11 +90,11 @@ SELECT
     intraday_return,
     LAG(intraday_return, 1) OVER(
         PARTITION BY company
-        ORDER BY company
+        ORDER BY period
     ) AS lag_daily_return,
     (intraday_return - LAG(intraday_return, 1) OVER(
         PARTITION BY company
-        ORDER BY company
+        ORDER BY period
     )) AS daily_return_difference
 FROM 
     stocks_intraday_return
@@ -129,6 +129,7 @@ SELECT
         WHEN close_price < AVG(close_price) OVER(
         PARTITION BY company, year
     ) THEN 'Close Price is less than annual average'
+    ELSE 'Close Price is equal to annual average'
     END AS stock_statement -- Step II: Create a column to called statement that contains the decision
 FROM 
     stock_close_price

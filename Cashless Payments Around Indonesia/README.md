@@ -21,3 +21,4 @@ This repository will present the fundamentals of PostgreSQL Queries and answer a
 + Functions for Manipulating Data and Tables in PostgreSQL
 + Statistical and Numeric Functions in PostgreSQL
 + Time Series Analysis Using PostgreSQL
++ Database Design with Star Schema in PostgreSQL

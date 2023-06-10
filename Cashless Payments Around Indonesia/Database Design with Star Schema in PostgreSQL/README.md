@@ -7,4 +7,5 @@ in which contains unique identification number or code (such as ID or combinatio
 Recall from my cashless payments system project, I enclose all steps within this folder in designing the new database named "cashless_system_star" within PostgreSQL engine.
 
 This is the result of database star schema in dark theme
+
 ![cashless_system_star_dark](https://github.com/madisuryapr/Data-Analytics-by-Adisurya/assets/91768688/31333e6d-3932-4dd9-a1f9-cb5a299efc35)

@@ -1,4 +1,4 @@
-## Cashless Payments System in Indonesia
+## Cashless Payments System Around Indonesia
 This project examines cashless payments system around Indonesia. Specifically, I utilize time series dataset of recognized cashless payment systems in Indonesia, namely debit cards, credit cards, Bank Indonesia National Clearing System (in Indonesia officially called as Sistem Kliring Nasional Bank Indonesia), and Bank Indonesia Real-Time Gross Settlement System, ranging from January 2020 to December 2022 for 34 Provinces. I retrieved all data from The Central Bank of Indonesia.
 
 There are 5 tables, to which be inserted in this project, namely:

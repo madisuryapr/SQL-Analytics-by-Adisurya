@@ -15,5 +15,5 @@ This repository will present the fundamentals of SQL Server queries which covers
 + Common Table Expressions (CTEs)
 + Window Functions
 + Functions for Manipulating Data and Tables in MS SQL Server
-+ Statistical and Numeric Functions in MS SQL Server
++ Statistical and Mathematical Functions in MS SQL Server
 + Time Series Analysis Using MS SQL Server

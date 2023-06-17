@@ -1,4 +1,4 @@
-## Statistical and Mathematical Functions in SQL Server
+## Statistical and Mathematical Functions in MS SQL Server
 
 In this folder, I present and demonstrate how to utilize statistical and mathematical functions within MS SQL Server environment to answer
 various data-related questions. When it comes to mathematical functions, several functions I employed in this folder are LOG10() and LOG()

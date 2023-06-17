@@ -9,7 +9,7 @@ There are 5 tables, to which be inserted in this project, namely:
 + trasactions_value    : Total transactions value of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in Billion IDR.
 + transactions_volume  : Total transactions volume of each recognized cashless payments system by official authority for each Indonesia provinces. All values are in unit of transactions.
 
-Furthermore, this project also explores the utilization of Structured Query Language (SQL) syntaxes to answer any business questions related to the data. There are two main softwares that will be employed within this project, namely PostgreSQL for SQL database and Tableau Desktop to visualize our data. Nevertheless, this folder will only examine PostgreSQL queries in details. Please kindly check my Tableau Public account for the result of Data Visualization.
+Furthermore, this project explores the utilization of Structured Query Language (SQL) to answer various business questions related to the data. There are two main softwares that are employed within this project, namely PostgreSQL for SQL database and Tableau Desktop to visualize our data. Nevertheless, this folder will only examine PostgreSQL queries in details. Please kindly check my Tableau Public account for the result of Data Visualization.
 
 This repository will present the fundamentals of PostgreSQL Queries and answer all relevant business-related questions, including:
 + SELECT Statements

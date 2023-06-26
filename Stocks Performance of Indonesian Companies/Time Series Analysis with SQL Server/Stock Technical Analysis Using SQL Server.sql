@@ -32,12 +32,12 @@ SELECT
     typical_price,
     AVG(typical_price) OVER(
         PARTITION BY company
-        ORDER BY company
+        ORDER BY date_time
         ROWS BETWEEN 49 PRECEDING AND CURRENT ROW
         ) AS ma_50day,
     AVG(typical_price) OVER(
         PARTITION BY company
-        ORDER BY company
+        ORDER BY date_time
         ROWS BETWEEN 199 PRECEDING AND CURRENT ROW
         ) AS ma_200day -- Step II: Calculate 50-day and 200-day moving average
                        -- with AVG() as Window Function

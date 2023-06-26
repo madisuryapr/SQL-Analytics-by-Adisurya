@@ -1,4 +1,4 @@
-# Data Analytics Repository
+# Data Analytics with SQL Repository
 This repository presents various projects related to Data Analytics and Business Intelligence
 
 both PostgreSQL and Microsoft SQL Server will be utilized in conducting future project to answer various questions. Furthermore, there will be several projects which will be integrated to Tableau Desktop. Current projects are as follows:

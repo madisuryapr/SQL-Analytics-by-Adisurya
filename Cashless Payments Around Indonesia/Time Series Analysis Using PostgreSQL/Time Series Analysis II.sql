@@ -49,7 +49,7 @@ FROM region_transactions_value;
 
 -- Question No.2: Calculate month-to-month (mtm) and year-over-year (yoy) growth of
 -- credit & debit cards transactions value and volume for each province
--- (round the results into 3 decimals behind comma
+-- (round the results into 3 decimals behind comma)
 
 -- Step I: Create CTE to which appends both transactions_value and transactions_volume tables
 WITH debit_credit_transactions AS (

@@ -1,0 +1,35 @@
+﻿industry_id;industry;sector_id
+A11;Oil & Gas;A
+A12;Coal;A
+A13;Oil, Gas & Coal Supports;A
+B11;Chemicals;B
+B12;Construction Materials;B
+B14;Metals & Minerals;B
+C14;Machinery;C
+C22;Commercial Services;C
+C31;Multi-sector Holdings;C
+D11;Food & Staples Retailing;D
+D22;Processed Foods;D
+D23;Agricultural Products;D
+D31;Tobacco;D
+D42;Personal Care Products;D
+E11;Auto Components;E
+E51;Tourism & Recreation;E
+E61;Media;E
+E62;Entertainment & Movie Production;E
+E73;Department Stores;E
+E74;Specialty Retail;E
+F12;Healthcare Providers;F
+F21;Pharmaceuticals;F
+G11;Banks;G
+G21;Consumer Financing;G
+G31;Investment Services;G
+G41;Insurance;G
+G51;Holding & Investment Companies;G
+H11;Real Estate Management & Development;H
+I11;Online Application & Services;I
+I22;Computer Hardware;I
+J21;Heavy Constructions & Civil Engineering;J
+J31;Telecommunication Service;J
+J32;Wireless Telecommunication Services;J
+K13;Passenger Land Transportation;K
